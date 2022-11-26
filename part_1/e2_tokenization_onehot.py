@@ -31,3 +31,21 @@ sentence_bow = {}
 for token in sentence.split():
     sentence_bow[token] = 1
 print(sentence_bow)
+
+# pd.Series as corpus of texts:
+print('\npd.Series as corpus of texts')
+df_corpus = pd.DataFrame(pd.Series(dict([(token, 1) for token in sentence.split()])), columns=['sent']).T
+print(df_corpus)
+
+sentences = sentence + "\n"
+sentences += "Constructions was done mostly by local masons and carpenters.\n"
+sentences += "He moved into the South Pavilion in 1770.\n"
+sentences += "Turning Monticello into a neoclassical masterpiece was Jefferson's obsession."
+corpus = {}
+for i, sent in enumerate(sentences.split('\n')):
+    corpus['sent{}'.format(i)] = dict((tok, 1) for tok in sent.split())
+df_big_corpus = pd.DataFrame.from_records(corpus).fillna(0).astype(int).T
+print()
+print(df_big_corpus[df_big_corpus.columns[:10]])
+
+
