@@ -13,8 +13,8 @@ pd.set_option('display.width', 75)
 bags_of_words = []
 
 # without case rorm, stemming and lemmatization
-# for text in movies.text:
-#     bags_of_words.append(Counter(casual_tokenize(text)))
+for text in movies.text:
+    bags_of_words.append(Counter(casual_tokenize(text)))
 
 # with case normalization:
 # for text in movies.text:
@@ -28,14 +28,14 @@ bags_of_words = []
 #     bags_of_words.append(Counter(casual_tokenize(text_stemmed)))
 
 # with lemmatization
-import nltk
-nltk.download('onw-1.4')
-nltk.download('wordnet')
-from nltk.stem import WordNetLemmatizer
-lemmatizer = WordNetLemmatizer()
-for text in movies.text:
-    text_lemmatized = ' '.join([lemmatizer.lemmatize(w) for w in text.split()])
-    bags_of_words.append(Counter(casual_tokenize(text_lemmatized)))
+# import nltk
+# nltk.download('onw-1.4')
+# nltk.download('wordnet')
+# from nltk.stem import WordNetLemmatizer
+# lemmatizer = WordNetLemmatizer()
+# for text in movies.text:
+#     text_lemmatized = ' '.join([lemmatizer.lemmatize(w) for w in text.split()])
+#     bags_of_words.append(Counter(casual_tokenize(text_lemmatized)))
 
 df_bows = pd.DataFrame.from_records(bags_of_words)
 df_bows = df_bows.fillna(0).astype(int)
@@ -71,3 +71,27 @@ print((movies.predicted_ispositive == movies.sentiment_ispositive).sum() / len(m
 # results with lemmatization
 # df_bows: 20021
 # probability for is_positive = 93.16%
+
+print("\n\n\n>>>>> TESTING TRAINED ")
+products = get_data('hutto_products')
+bags_of_words = []
+for text in products.text:
+    bags_of_words.append(Counter(casual_tokenize(text)))
+
+df_product_bows = pd.DataFrame.from_records((bags_of_words))
+df_product_bows = df_product_bows.fillna(0).astype(int)
+df_all_bows = df_bows.append(df_product_bows)
+print(df_all_bows.columns)
+
+df_product_bows = df_all_bows.iloc[len(movies):][df_bows.columns]
+df_product_bows = df_product_bows.fillna(0).astype(int)
+print('df_product_bows.shape', df_product_bows.shape)
+print('df_bows.shape:', df_bows.shape, '\n')
+
+products['ispos'] = (products.sentiment > 0).astype(int)
+products['predicted_ispositive'] = nb.predict(df_product_bows.values).astype(int)
+print(products.head())
+print('Product prediction:', (products.predicted_ispositive == products.ispos).sum()/len(products))
+
+# and for the testing trained model on the test product dataset
+# the model achieved 55.72% accuracy
