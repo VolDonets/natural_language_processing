@@ -75,4 +75,53 @@ for doc in docs:
         vec[key] = value / len(lexicon)
     doc_vectors.append(vec)
 
+print('\n\n\n>>> RELEVANCE RANKING')
+document_tfidf_vectors = []
+for doc in docs:
+    vec = copy.copy(zero_vector)
+    tokens = tokenizer.tokenize(doc.lower())
+    token_counts = Counter(tokens)
+
+    for key, value in token_counts.items():
+        docs_containing_key = 0
+        for _doc in docs:
+            if key in _doc:
+                docs_containing_key += 1
+            tf = value / len(lexicon)
+            if docs_containing_key:
+                idf = len(docs) / docs_containing_key
+            else:
+                idf = 0
+            vec[key] = tf * idf
+    document_tfidf_vectors.append(vec)
+
+print(document_tfidf_vectors)
+print('cosine similarity')
+
+from e2_compute_cosine_similarity import cosine_sim
+
+print(cosine_sim(document_tfidf_vectors[0], document_tfidf_vectors[1]))
+print(cosine_sim(document_tfidf_vectors[0], document_tfidf_vectors[2]))
+print(cosine_sim(document_tfidf_vectors[1], document_tfidf_vectors[2]))
+
+query = "How long does it take to get to the store?"
+query_vec = copy.copy(zero_vector)
+
+tokens = tokenizer.tokenize(query.lower())
+token_counts = Counter(tokens)
+
+for key, value in token_counts.items():
+    docs_containing_key = 0
+    for _doc in docs:
+        if key in _doc.lower():
+            docs_containing_key += 1
+        if docs_containing_key == 0:
+            continue
+        tf = value / len(tokens)
+        idf = len(docs) / docs_containing_key
+        query_vec[key] = tf * idf
+
+print('cosine sim to query & 0 =', cosine_sim(query_vec, document_tfidf_vectors[0]))
+print('cosine sim to query & 1 =', cosine_sim(query_vec, document_tfidf_vectors[1]))
+print('cosine sim to query & 2 =', cosine_sim(query_vec, document_tfidf_vectors[2]))
 
