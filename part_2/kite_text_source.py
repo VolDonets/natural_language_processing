@@ -1,6 +1,6 @@
 kite_text = "A kite is traditionally a tethered heavier-than-air craft with wing surfaces that react" \
             "against the air to create lift and drag." \
-            " A kite consists of wings, tethers, and anchors."\
+            " A kite consists of wings, tethers, and anchors." \
             "Kites often have a bridle to guide the face of the kite at the correct angle so the wind can lift it." \
             " A kite’s wing also may be so designed so a bridle is not needed; when kiting a sailplane for launch, " \
             "the tether meets the wing at a single point. A kite may have fixed or moving anchors. Untraditionally " \
@@ -20,3 +20,27 @@ kite_text = "A kite is traditionally a tethered heavier-than-air craft with wing
             "kites are multi-line steerable kites designed to generate large forces which can be used to power " \
             "activities such as kite surfing, kite landboarding, kite fishing, kite buggying and a new trend snow " \
             "kiting. Even Man-lifting kites have been made."
+
+kite_history = \
+    "Kites were invented in China, where materials ideal for kite building were readily " \
+    "available: silk fabric for sail material; fine, high-tensile-strength silk for flying line; " \
+    "and resilient bamboo for a strong, lightweight framework. " \
+    "The kite has been claimed as the invention of the 5th-century BC Chinese " \
+    "philosophers Mozi (also Mo Di) and Lu Ban (also Gongshu Ban). By 549 AD " \
+    "paper kites were certainly being flown, as it was recorded that in that year a paper " \
+    "kite was used as a message for a rescue mission. Ancient and medieval Chinese " \
+    "sources describe kites being used for measuring distances, testing the wind, lifting " \
+    "men, signaling, and communication for military operations. The earliest known " \
+    "Chinese kites were flat (not bowed) and often rectangular. Later, tailless kites " \
+    "incorporated a stabilizing bowline. Kites were decorated with mythological motifs " \
+    "and legendary figures; some were fitted with strings and whistles to make musical " \
+    "sounds while flying. From China, kites were introduced to Cambodia, Thailand, " \
+    "India, Japan, Korea and the western world. " \
+    "After its introduction into India, the kite further evolved into the fighter kite, known " \
+    "as the patang in India, where thousands are flown every year on festivals such as " \
+    "Makar Sankranti. Kites were known throughout Polynesia, as far as New Zealand, with the " \
+    "assumption being that the knowledge diffused from China along with the people. " \
+    "Anthropomorphic kites made from cloth and wood were used in religious ceremonies " \
+    "to send prayers to the gods. Polynesian kite traditions are used by anthropologists get " \
+    "an idea of early “primitive” Asian traditions that are believed to have at one time" \
+    "existed in Asia."
