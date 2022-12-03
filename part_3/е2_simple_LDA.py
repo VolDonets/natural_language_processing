@@ -1,3 +1,5 @@
+# LDA ~ Linear Discriminant analysis
+
 import pandas as pd
 from nlpia.data.loaders import get_data
 
