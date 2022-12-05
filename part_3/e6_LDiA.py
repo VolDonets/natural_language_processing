@@ -54,7 +54,8 @@ X_train, X_test, y_train, y_test = train_test_split(ldia16_topic_vectors, sms.sp
 lda = LDA(n_components=1)
 lda = lda.fit(X_train, y_train)
 sms['ldia16_spam'] = lda.predict(ldia16_topic_vectors)
-print('Test Accuracy on LDiA:', round(float(lda.score(X_test, y_test)), 2))
+print('Train Accuracy on LDiA_16:', round(float(lda.score(X_train, y_train)), 2))
+print('Test Accuracy on LDiA_16:', round(float(lda.score(X_test, y_test)), 2))
 
 # # !! TIP for iteration through all the combinations (pairs or triplets) of a set
 # # of objects, you can use the built-in Python product() function:
@@ -73,3 +74,21 @@ lda = lda.fit(X_train, y_train)
 print('\n\nTrain accuracy on TF-IDF:', round(float(lda.score(X_train, y_train)), 3))
 print('Test accuracy on TF-IDF:', round(float(lda.score(X_test, y_test)), 3))
 
+# let's try LDiA with 32 components
+ldia32 = LDiA(n_components=32, learning_method='batch')
+ldia32 = ldia32.fit(bow_docs)
+print('\n\nLDiA_32 components shape:', ldia32.components_.shape)
+
+ldia32_topic_vectors = ldia32.transform(bow_docs)
+columns32 = ['topic{}'.format(i) for i in range(ldia32.n_components)]
+ldia32_topic_vectors = pd.DataFrame(ldia32_topic_vectors, index=index, columns=columns32)
+print('LDiA_32 topic vectors:')
+print(ldia32_topic_vectors.round(2).head())
+
+X_train, X_test, y_train, y_test = train_test_split(ldia32_topic_vectors, sms.spam, test_size=0.5,random_state=271828)
+lda = LDA(n_components=1)
+lda = lda.fit(X_train, y_train)
+sms['ldia32_spam'] = lda.predict(ldia32_topic_vectors)
+print('X_train.shape: ', X_train.shape)
+print('LDiA32 train acc:', round(float(lda.score(X_train, y_train)), 3))
+print('LDiA32 test acc:', round(float(lda.score(X_test, y_test)), 3))
