@@ -24,3 +24,6 @@ sentence = "Claude Monet painted the Grand Canal of Venice in 1806."
 #    This matrix called 'word vector embedding'
 # 3. Do dot product between one-hot vector and weight matrix
 #    and get word vector
+
+# + works well with small corpora
+# + work well with rare terms.
