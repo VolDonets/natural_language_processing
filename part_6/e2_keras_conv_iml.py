@@ -42,11 +42,11 @@ def preprocess_data(filepath_):
 
 
 def tokenize_and_vectorize(dataset_):
-    tokenizer_ = TreebankWordTokenizer
+    tokenizer_ = TreebankWordTokenizer()
     vectorized_data_ = []
     expected_ = []
     for sample_ in dataset_:
-        tokens_ = tokenizer_.tokenize(tokenizer_, sample_[1])
+        tokens_ = tokenizer_.tokenize(sample_[1])
         sample_vecs_ = []
         for token_ in tokens_:
             try:
