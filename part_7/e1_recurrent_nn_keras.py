@@ -98,7 +98,7 @@ maxlen = 400
 batch_size = 32
 embedding_dims = 300
 epochs = 5
-num_neurons = 100
+num_neurons = 25
 
 # pad + trunkate the data
 x_train = pad_trunc(x_train, maxlen)
@@ -131,6 +131,6 @@ model.fit(x_train, y_train,
 
 # save model to file:
 model_structure = model.to_json()
-with open('../src/part_7/rnn_model_100n/rnn_model.json', 'w') as json_file:
+with open('../src/part_7/rnn_model_25n/rnn_model.json', 'w') as json_file:
     json_file.write(model_structure)
-model.save_weights('../src/part_7/rnn_model_100n/rnn_weights.h5')
+model.save_weights('../src/part_7/rnn_model_25n/rnn_weights.h5')
