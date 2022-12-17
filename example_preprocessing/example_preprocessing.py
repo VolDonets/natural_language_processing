@@ -67,6 +67,23 @@ def preprocess_data(filepath_):
     return dataset_
 
 
+def test_len(data, maxlen):
+    total_len = truncated = exact = padded = 0
+    for sample in data:
+        total_len += len(sample)
+        if len(sample) > maxlen:
+            truncated += 1
+        elif len(sample) < maxlen:
+            padded += 1
+        else:
+            exact += 1
+
+    print('Padded: {}'.format(padded))
+    print('Equal: {}'.format(exact))
+    print('Truncated: {}'.format(truncated))
+    print('Avg length: {}'.format(total_len / len(data)))
+
+
 def get_prepared_test_train_data(length_lim=-1, w2v_limit=-1, testing_split=.8, maxlen=400, embedding_dims=300):
     word_vectors = get_data('w2v') if w2v_limit < 0 else get_data('w2v', limit=w2v_limit)
 
