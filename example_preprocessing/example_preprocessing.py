@@ -6,7 +6,9 @@ from nltk.tokenize import TreebankWordTokenizer
 from nlpia.loaders import get_data
 
 
-def tokenize_and_vectorize(dataset_, word_vectors_):
+def tokenize_and_vectorize(dataset_, word_vectors_=None, w2v_limit=100_000):
+    if word_vectors_ is None:
+        word_vectors_ = get_data('w2v', limit=w2v_limit)
     tokenizer_ = TreebankWordTokenizer()
     vectorized_data_ = []
     expected_ = []
