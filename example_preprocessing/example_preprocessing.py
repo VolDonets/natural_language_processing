@@ -42,6 +42,13 @@ def pad_trunc(data_, maxlen_):
     return new_data_
 
 
+def extract_expected(dataset):
+    expected = []
+    for sample in dataset:
+        expected.append(sample[0])
+    return expected
+
+
 def preprocess_data(filepath_):
     positive_path_ = os.path.join(filepath_, 'pos')
     negative_path_ = os.path.join(filepath_, 'neg')
