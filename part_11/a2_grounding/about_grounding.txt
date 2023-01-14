@@ -1,0 +1,4 @@
+It's the knowledge based approach, where build a knowledge base just from reading some text (for example, Wikipedia).
+This usually used for building the question-answerring systems (like IBM Jeopardy).
+
+A knowledge graph is said to "ground" the chatbot to the read world.
