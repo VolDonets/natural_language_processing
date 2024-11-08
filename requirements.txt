@@ -6,3 +6,4 @@ matplotlib~=3.9.2
 seaborn~=0.13.2
 h5py~=3.12.1
 gensim~=4.3.3
+tensorflow
