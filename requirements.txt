@@ -7,3 +7,7 @@ seaborn~=0.13.2
 h5py~=3.12.1
 gensim~=4.3.3
 tensorflow
+langchain==0.3.7
+langchain-core==0.3.18
+langgraph==0.2.48
+langchain-openai==0.2.8
